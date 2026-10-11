@@ -1,0 +1,880 @@
+/* ==========================================================================
+   MINEBRAIN AI — Mining Intelligence & Safety Command Center Stylesheet
+   Strictly scoped to .minebrain-intelligence and child elements.
+   Zero pollution of global html, body, main, or shared dashboard elements.
+   ========================================================================== */
+
+.minebrain-intelligence {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  min-height: 800px;
+  border-radius: 24px;
+  padding: 30px;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
+  color: #f1f5f9;
+
+  /* Sophisticated dark graphite & gold fallback background */
+  background-color: #0b0f15;
+  background-image: 
+    radial-gradient(circle at 85% 10%, rgba(217, 119, 6, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 15% 90%, rgba(6, 182, 212, 0.08) 0%, transparent 45%),
+    linear-gradient(180deg, rgba(11, 15, 21, 0.94) 0%, rgba(15, 20, 28, 0.97) 100%);
+  border: 1px solid rgba(217, 119, 6, 0.32);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(251, 191, 36, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   Realistic Mining Tunnel Background Layer with Gradient & Scanlines
+   -------------------------------------------------------------------------- */
+.minebrain-bg-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.22;
+  filter: contrast(1.15) brightness(0.9);
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.minebrain-scanline {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.25) 51%
+  );
+  background-size: 100% 4px;
+  opacity: 0.35;
+}
+
+.minebrain-scanning-beam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(6, 182, 212, 0.6) 30%,
+    rgba(251, 191, 36, 0.9) 50%,
+    rgba(6, 182, 212, 0.6) 70%,
+    transparent 100%
+  );
+  box-shadow: 0 0 14px rgba(251, 191, 36, 0.6);
+  animation: minebrainScan 12s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes minebrainScan {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.7;
+  }
+  95% {
+    opacity: 0.7;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.minebrain-content-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   A. Premium Intelligence Header
+   -------------------------------------------------------------------------- */
+.minebrain-hero {
+  background: linear-gradient(135deg, rgba(20, 26, 36, 0.82) 0%, rgba(15, 20, 28, 0.74) 100%);
+  border: 1px solid rgba(217, 119, 6, 0.28);
+  border-radius: 20px;
+  padding: 24px 28px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  justifyContent: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.minebrain-brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.minebrain-logo-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.08));
+  border: 1.5px solid rgba(251, 191, 36, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 0 20px rgba(217, 119, 6, 0.25);
+}
+
+.minebrain-title-block h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.minebrain-gold-accent {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 60%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
+.minebrain-subtitle {
+  margin: 3px 0 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.3px;
+}
+
+.minebrain-tagline {
+  margin: 6px 0 0 0;
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.4;
+  max-width: 620px;
+}
+
+.minebrain-engine-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.minebrain-pulse-ring {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.minebrain-pulse-ring.active {
+  background: #10b981;
+  box-shadow: 0 0 12px #10b981;
+  animation: minebrainPulse 2s infinite;
+}
+
+.minebrain-pulse-ring.demo {
+  background: #f59e0b;
+  box-shadow: 0 0 12px #f59e0b;
+  animation: minebrainPulse 2.5s infinite;
+}
+
+.minebrain-pulse-ring.unavailable {
+  background: #ef4444;
+  box-shadow: 0 0 12px #ef4444;
+}
+
+@keyframes minebrainPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.minebrain-engine-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.minebrain-engine-status {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   B. Intelligence Overview Panels (4 Compact Interactive Summary Cards)
+   -------------------------------------------------------------------------- */
+.minebrain-overview-grid {
+  display: grid;
+  grid-templateColumns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.minebrain-summary-card {
+  background: linear-gradient(145deg, rgba(22, 30, 42, 0.75) 0%, rgba(15, 20, 28, 0.8) 100%);
+  border: 1px solid rgba(217, 119, 6, 0.22);
+  border-radius: 16px;
+  padding: 18px 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justifyContent: space-between;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.minebrain-summary-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(251, 191, 36, 0.55);
+  box-shadow: 
+    0 10px 28px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(217, 119, 6, 0.18);
+}
+
+.minebrain-summary-card.active {
+  border-color: #fbbf24;
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.9) 0%, rgba(20, 28, 40, 0.92) 100%);
+  box-shadow: 
+    0 10px 28px rgba(0, 0, 0, 0.4),
+    0 0 24px rgba(251, 191, 36, 0.25);
+}
+
+.minebrain-card-header {
+  display: flex;
+  justifyContent: space-between;
+  align-items: center;
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.minebrain-card-icon {
+  font-size: 18px;
+}
+
+.minebrain-card-value {
+  font-size: 26px;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 10px 0 4px 0;
+}
+
+.minebrain-card-desc {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   C. Main Intelligence Workspace (Features 1, 2, 3 Grid + Flagship 4)
+   -------------------------------------------------------------------------- */
+.minebrain-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.minebrain-feature-card {
+  background: linear-gradient(145deg, rgba(20, 26, 36, 0.85) 0%, rgba(13, 17, 24, 0.88) 100%);
+  border: 1px solid rgba(217, 119, 6, 0.24);
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.minebrain-feature-card:hover {
+  border-color: rgba(251, 191, 36, 0.45);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Card Visual Thumbnail Container */
+.minebrain-visual-header {
+  position: relative;
+  width: 100%;
+  height: 170px;
+  overflow: hidden;
+  background-color: #0f172a;
+}
+
+.minebrain-visual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.minebrain-feature-card:hover .minebrain-visual-img {
+  transform: scale(1.04);
+}
+
+.minebrain-visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 20, 28, 0.15) 0%,
+    rgba(15, 20, 28, 0.85) 80%,
+    rgba(15, 20, 28, 1) 100%
+  );
+}
+
+.minebrain-badge-pill {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.minebrain-badge-green {
+  background: rgba(16, 185, 129, 0.22);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.45);
+}
+
+.minebrain-badge-amber {
+  background: rgba(245, 158, 11, 0.22);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.45);
+}
+
+.minebrain-badge-red {
+  background: rgba(239, 68, 68, 0.22);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.45);
+}
+
+.minebrain-badge-cyan {
+  background: rgba(6, 182, 212, 0.22);
+  color: #22d3ee;
+  border: 1px solid rgba(6, 182, 212, 0.45);
+}
+
+.minebrain-badge-gray {
+  background: rgba(100, 116, 139, 0.25);
+  color: #cbd5e1;
+  border: 1px solid rgba(100, 116, 139, 0.4);
+}
+
+/* Card Body */
+.minebrain-feature-body {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.minebrain-feature-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.minebrain-feature-desc {
+  margin: 0;
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* Data List inside Card */
+.minebrain-data-box {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(217, 119, 6, 0.18);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.minebrain-data-row {
+  display: flex;
+  justifyContent: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+
+.minebrain-data-label {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.minebrain-data-val {
+  color: #f1f5f9;
+  font-weight: 700;
+}
+
+.minebrain-action-btn {
+  margin-top: auto;
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(217, 119, 6, 0.35);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.25) 100%);
+  color: #fbbf24;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.minebrain-action-btn:hover {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #0b0f15;
+  border-color: #f59e0b;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   FEATURE 4 — MineBrain AI Action Center (The Flagship Center)
+   -------------------------------------------------------------------------- */
+.minebrain-action-center {
+  background: linear-gradient(145deg, rgba(20, 26, 36, 0.92) 0%, rgba(13, 17, 24, 0.95) 100%);
+  border: 1.5px solid rgba(251, 191, 36, 0.38);
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.4),
+    0 0 28px rgba(217, 119, 6, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.minebrain-action-header {
+  display: flex;
+  justifyContent: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+  padding-bottom: 18px;
+}
+
+.minebrain-action-title h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 900;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.minebrain-action-summary-text {
+  margin: 6px 0 0 0;
+  font-size: 13px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+/* Action Filters */
+.minebrain-filter-row {
+  display: flex;
+  justifyContent: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.minebrain-category-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.minebrain-pill {
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  color: #94a3b8;
+  transition: all 0.2s ease;
+}
+
+.minebrain-pill:hover {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+.minebrain-pill.active {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(217, 119, 6, 0.35));
+  border-color: #fbbf24;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+}
+
+/* Findings List */
+.minebrain-findings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.minebrain-finding-item {
+  background: rgba(15, 23, 42, 0.75);
+  border-radius: 14px;
+  border-left: 4px solid #f59e0b;
+  border-top: 1px solid rgba(217, 119, 6, 0.16);
+  border-right: 1px solid rgba(217, 119, 6, 0.16);
+  border-bottom: 1px solid rgba(217, 119, 6, 0.16);
+  padding: 16px 20px;
+  display: flex;
+  justifyContent: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  transition: all 0.2s ease;
+}
+
+.minebrain-finding-item:hover {
+  background: rgba(20, 28, 42, 0.9);
+  border-top-color: rgba(251, 191, 36, 0.35);
+  border-right-color: rgba(251, 191, 36, 0.35);
+  border-bottom-color: rgba(251, 191, 36, 0.35);
+  transform: translateX(2px);
+}
+
+.minebrain-finding-item.critical {
+  border-left-color: #ef4444;
+}
+
+.minebrain-finding-item.high {
+  border-left-color: #f59e0b;
+}
+
+.minebrain-finding-item.medium {
+  border-left-color: #06b6d4;
+}
+
+.minebrain-finding-item.resolved {
+  border-left-color: #10b981;
+  opacity: 0.75;
+}
+
+.minebrain-finding-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 680px;
+}
+
+.minebrain-finding-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.minebrain-finding-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.minebrain-finding-reason {
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.minebrain-finding-meta {
+  font-size: 11px;
+  color: #64748b;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.minebrain-finding-action-text {
+  font-size: 11px;
+  color: #fbbf24;
+  font-weight: 600;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.minebrain-finding-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.minebrain-status-toggle-btn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(217, 119, 6, 0.3);
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+}
+
+.minebrain-status-toggle-btn:hover {
+  background: #f59e0b;
+  color: #0b0f15;
+}
+
+.minebrain-status-toggle-btn.resolved {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+  color: #34d399;
+}
+
+/* Empty State */
+.minebrain-empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 14px;
+  border: 1px dashed rgba(217, 119, 6, 0.25);
+}
+
+.minebrain-empty-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+/* Briefing Modal / Drawer */
+.minebrain-briefing-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(8, 11, 16, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.minebrain-briefing-card {
+  width: 600px;
+  max-width: 95%;
+  background: linear-gradient(145deg, #161f2c 0%, #0e141d 100%);
+  border: 1.5px solid rgba(251, 191, 36, 0.4);
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #f1f5f9;
+}
+
+.minebrain-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(217, 119, 6, 0.25);
+  padding-bottom: 14px;
+}
+
+.minebrain-modal-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.minebrain-modal-close-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.minebrain-modal-close-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.minebrain-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 65vh;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.minebrain-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.minebrain-modal-body::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 4px;
+}
+.minebrain-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(217, 119, 6, 0.4);
+  border-radius: 4px;
+}
+
+.minebrain-briefing-box {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(217, 119, 6, 0.18);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.minebrain-briefing-heading {
+  font-size: 11px;
+  font-weight: 800;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.minebrain-briefing-text {
+  font-size: 12px;
+  color: #e2e8f0;
+  line-height: 1.5;
+}
+
+.minebrain-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid rgba(217, 119, 6, 0.2);
+  padding-top: 16px;
+}
+
+.minebrain-btn-secondary {
+  padding: 8px 18px;
+  border-radius: 10px;
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.minebrain-btn-secondary:hover {
+  background: rgba(51, 65, 85, 0.8);
+  color: #ffffff;
+}
+
+.minebrain-btn-primary {
+  padding: 8px 18px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border: 1px solid #fbbf24;
+  color: #0b0f15;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.minebrain-btn-primary:hover {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .minebrain-intelligence {
+    padding: 16px;
+  }
+  .minebrain-hero {
+    padding: 16px;
+  }
+  .minebrain-title-block h1 {
+    font-size: 20px;
+  }
+  .minebrain-action-center {
+    padding: 18px;
+  }
+}
+
